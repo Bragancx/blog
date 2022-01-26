@@ -1,0 +1,10 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title"><%= return_date(comment.created_at) %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= comment.user.email %></h6>
+        <p class="card-text"><%= comment.body %></p>
+        <%= button_to 'Delete', article_comment_path(@article, comment),
+            method: :delete, onclick: "return confirm('Are you sure?')",
+            class: "btn btn-danger" if policy(comment).destroy? %>
+    </div>
+</div>

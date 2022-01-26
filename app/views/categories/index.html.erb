@@ -1,0 +1,28 @@
+<h1>Categories</h1>
+
+<p>
+  <%= link_to "New category", new_category_path, class: "btn btn-primary" if policy(:category).create? %>
+</p>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3">
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %></td>
+      <td>
+
+        <%= link_to 'Edit', edit_category_path(category), class: "btn btn-secondary" if policy(:category).update? %>
+        <%= link_to 'Destroy', category_path(category), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger"  if policy(:category).destroy? %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

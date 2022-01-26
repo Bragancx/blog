@@ -1,0 +1,14 @@
+<article class="card shadow mb-3">
+  <div class="card-body">
+    <h2 class="blog-post-title"><%= article.title %></h2>
+    <p class="bog-post-meta">
+      <%= render "article_detail", article: article%>
+    </p>
+    <p><%= truncate(article.body, length: 150) %></p>
+    <p>
+      <%= link_to "Continue reading...", article%>
+    </p>
+    <%= link_to "Edit", edit_article_path(article), class: "btn btn-secondary" if policy(article).update? %>
+    <%= button_to 'Delete', article_path(article), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger" if policy(article).destroy? %>
+  </div>
+</article>
