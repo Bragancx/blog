@@ -21,4 +21,9 @@ class User < ApplicationRecord
 
     errors.add :password, :complexity unless CheckPasswordComplexityService.call(password)
   end
+
+  def send_confirmation_notification?
+    false
+  end
+
 end
