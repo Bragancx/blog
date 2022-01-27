@@ -7,10 +7,10 @@ class ArticlesController < ApplicationController
 
   def index
     @archives = Article.group_by_month(:created_at, format: '%B %Y', locale: :en).count
-
     @categories = Category.sorted
-    category = @categories.select { |c| c.name == params[:category] }[0] if params[:category].present?
-    month_year = @archives.select { |m| m[0] == params[:month_year] }&.first if params[:month_year].present?
+
+    category = @categories.find { |c| c.name == params[:category] } if params[:category].present?
+    month_year = @archives.find { |m| m[0] == params[:month_year] }&.first if params[:month_year].present?
     
     @highlights = Article
       .includes(:category, :user)
@@ -22,8 +22,8 @@ class ArticlesController < ApplicationController
       highlights_ids = @highlights.pluck(:id).join(",")
       
       
-      @articles = Article.without_highlights(highlights_ids)
-      .includes(:category, :user)
+      @articles = Article.includes(:category, :user)
+      .without_highlights(highlights_ids)
       .filter_by_category(category)
       .filter_by_archive(month_year)
       .desc_order
