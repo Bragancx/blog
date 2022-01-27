@@ -1,2 +1,2 @@
-<%= return_date(article.created_at) %> by
-<%= sub_masked_email(article.user.email) %> in <%= article.category.name %>
+<%= return_date(article.created_at) %> <%= t 'app.word.by' %>
+<%= sub_masked_email(article.user.email) %> <%= t 'app.word.in' %> <%= article.category.name %>

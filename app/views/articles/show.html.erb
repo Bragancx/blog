@@ -9,18 +9,18 @@
         <%= @article.body %>
     </p>
     <div class="mb-3">
-        <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-secondary" if policy(@article).update? %>
-        <%= button_to 'Delete', article_path(@article), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger" if policy(@article).destroy?%>
-        <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+        <%= link_to t('app.button.edit'), edit_article_path(@article), class: "btn btn-secondary" if policy(@article).update? %>
+        <%= button_to t('app.button.destroy'), article_path(@article), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger" if policy(@article).destroy?%>
+        <%= link_to t('app.button.back'), root_path, class: "btn btn-secondary" %>
     </div>
 
-    <h4 class="mt-3">Comments</h4>
+    <h4 class="mt-3"><%= t('articles.show.comments') %></h4>
     <%= render @article.comments %>
 
-    <h5>Add a comment:</h5>
+    <h5><%= t('articles.show.add_comment') %></h5>
     <% if policy(:comment).create? %>
         <%= render 'comments/form' %>
     <% else %>
-        Please, login to create a comment.
+        <%= t('articles.show.login_create_comment') %>
     <% end %>
 </article>

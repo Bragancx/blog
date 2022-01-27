@@ -1,7 +1,7 @@
-<h1>Categories</h1>
+<h1><%= t 'app.menu.categories'%></h1>
 
 <p>
-  <%= link_to "New category", new_category_path, class: "btn btn-primary" if policy(:category).create? %>
+  <%= link_to t('categories.new.title'), new_category_path, class: "btn btn-primary" if policy(:category).create? %>
 </p>
 
 <table class="table table-striped table-hover table-bordered">
@@ -19,8 +19,8 @@
       <td><%= category.name %></td>
       <td>
 
-        <%= link_to 'Edit', edit_category_path(category), class: "btn btn-secondary" if policy(:category).update? %>
-        <%= link_to 'Destroy', category_path(category), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger"  if policy(:category).destroy? %>
+        <%= link_to t('app.button.edit'), edit_category_path(category), class: "btn btn-secondary" if policy(:category).update? %>
+        <%= link_to t('app.button.destroy'), category_path(category), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger"  if policy(:category).destroy? %>
       </td>
     </tr>
     <% end %>
