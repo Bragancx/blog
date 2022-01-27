@@ -1,6 +1,6 @@
 <%= render @category %>
 <div class="mb-3">
     <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-secondary" %>
-    <%= button_to 'Delete', @category, method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger" %>
+    <%= button_to 'Delete', @category, method: :delete, onclick: "return confirm(#{t('app.message.confirm_destroy')})", class: "btn btn-danger" %>
     <%= link_to 'Voltar', categories_path, class: "btn btn-secondary" %>
 </div>

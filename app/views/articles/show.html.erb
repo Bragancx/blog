@@ -10,7 +10,7 @@
     </p>
     <div class="mb-3">
         <%= link_to t('app.button.edit'), edit_article_path(@article), class: "btn btn-secondary" if policy(@article).update? %>
-        <%= button_to t('app.button.destroy'), article_path(@article), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger" if policy(@article).destroy?%>
+        <%= button_to t('app.button.destroy'), article_path(@article), method: :delete, onclick: "return confirm(#{t('app.message.confirm_destroy')})", class: "btn btn-danger" if policy(@article).destroy?%>
         <%= link_to t('app.button.back'), root_path, class: "btn btn-secondary" %>
     </div>
 

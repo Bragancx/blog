@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
       .desc_order
       .page(current_page)
 
-    @archives = Article.group_by_month(:created_at, format: '%B %Y').count
+    @archives = Article.group_by_month(:created_at, format: '%B %Y', locale: :en).count
   end
 
   def new
@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new(article_params)
 
     if @article.save
-      redirect_to @article, notice: "Article was successfully created."
+      redirect_to @article, notice: t('.sucess')
     else
       render :new, status: :unprocessable_entity
     end  
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: "Article was successfully updated."
+      redirect_to @article, notice: t('.sucess')
     else
       render :edit
     end
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Article was successfully destroyed." }
+      format.html { redirect_to root_path, notice: t('.sucess') }
       format.json { head :no_content }
     end
 

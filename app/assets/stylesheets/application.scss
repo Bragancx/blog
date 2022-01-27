@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  @extend .form-control;
+}
+
+.form-actions > input[type="submit"] {
+    @extend .btn-primary
+}

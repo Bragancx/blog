@@ -4,7 +4,7 @@
         <h6 class="card-subtitle mb-2 text-muted"><%= sub_masked_email(comment.user.email) %></h6>
         <p class="card-text"><%= comment.body %></p>
         <%= button_to 'Delete', article_comment_path(@article, comment),
-            method: :delete, onclick: "return confirm('Are you sure?')",
+            method: :delete, onclick: "return confirm(#{t('app.message.confirm_destroy')})",
             class: "btn btn-danger" if policy(comment).destroy? %>
     </div>
 </div>

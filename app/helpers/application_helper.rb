@@ -1,6 +1,10 @@
 module ApplicationHelper
-    def return_date(datetime)
-        l(datetime, format: "%B %e, %Y").capitalize
+    def return_date(value)
+        l(value, format: "%B %e, %Y").capitalize
+    end
+
+    def month_year(value)
+        l(value.to_datetime, format: '%B %Y').capitalize
     end
     
     def render_if(condition, template, record)
